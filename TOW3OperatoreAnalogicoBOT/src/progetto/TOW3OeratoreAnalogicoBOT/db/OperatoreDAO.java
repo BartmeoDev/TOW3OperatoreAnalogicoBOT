@@ -13,7 +13,7 @@ public class OperatoreDAO {
 	Connection connection = null;
 	
 	final String sqlBrevettoGoogle = "INSERT INTO `brevetti` (`p_iva`, `app_number`,`titolo`, `assegnatario`, `inventore`, `data_rilascio`, `luogo_validita` , `abstract`, `cod_classificazione`, `keywords`) VALUES (?,?,?,?,?,?,?,?,?,?);";
-	final String sqlArticolo = "INSERT INTO `articoli` (`PartitaIVA`, `Title`, `Link`, `Backlink`, `Text`, `Keywords` , `Date`) VALUES (?,?,?,?,?,?,?);";
+	final String sqlArticolo = "INSERT INTO `articoli` (`p_iva`, `Title`, `Link`, `Backlink`, `Text`, `Keywords` , `Date`) VALUES (?,?,?,?,?,?,?);";
 	final String sqlBrevettoEPO = "INSERT INTO `brevetti` (`P_iva`, `App_number`, `Family_id`, `Titolo`, `Assegnatario`, `Inventori`, `Data`, `Abstract_text`, `Codclass`) VALUES (?,?,?,?,?,?,?,?,?);";
 	//	String sqlTitle = "INSERT INTO 'brevetti' ('titolo') VALUES(?);";
 //	final String sqlDelete = "TRUNCATE `brevetti`";

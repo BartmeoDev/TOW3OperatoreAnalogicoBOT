@@ -70,7 +70,7 @@ public class WebRepUnit {
 			res.setPartitaIVA(azienda.getPartitaIVA());
 			String html_text = resultScraper.getBody(res.getLink());
 
-			String article_text = this.extractRealText(html_text);			
+			String article_text = this.extractRealText(html_text, res.getBacklink());			
 			res.setText(article_text);
 			
 			azienda.addArticle(res);
@@ -93,9 +93,12 @@ public class WebRepUnit {
 	}
 	
 	// raw extraction
-	private String extractRealText (String html_text) {
-		String body_context = "";
-
+	private String extractRealText (String html_text, String testata) {
+		
+		StringCleaner cleaner = new StringCleaner(html_text);
+		
+		String body_context = cleaner.extractText(testata);
+/*
 		String[] flaglist = StringUtils.substringsBetween(html_text, "<p class=", "</p>");
 		
 		if (flaglist != null && flaglist.length != 0){
@@ -129,7 +132,7 @@ public class WebRepUnit {
 				body_context += "\n" + text;
 			}
 		}
-		
+		*/
 		
 		return body_context;
 	
