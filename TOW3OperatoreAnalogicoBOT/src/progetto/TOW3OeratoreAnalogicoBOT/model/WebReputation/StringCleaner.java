@@ -205,6 +205,7 @@ public class StringCleaner {
 		String maybetext = "";
 		
 		String[] links = StringUtils.substringsBetween(myString, "<a ", "</a>");
+		if (links != null)
 		for (String link : links) {
 			myString = myString.replace("<a " + link + "</a>", "");
 			//System.out.println(link);

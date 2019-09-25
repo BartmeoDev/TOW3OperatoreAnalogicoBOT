@@ -16,6 +16,7 @@ public class CustomSearch {
 	final private String API_key = "AIzaSyB4FrM3zX_b3ILGpcxfSdD2H9xszsoynRM";
 	final private String fields = "items(displayLink,link,title),searchInformation";
 	final private String sort = "date";
+	final private int results_limit = 21;
 
 
 	private void authentication () {
@@ -53,7 +54,7 @@ public class CustomSearch {
 			});
 			
 			start_index += 10;
-			if (start_index > 91) break;
+			if (start_index > results_limit) break;
 			
 			json = this.searchForSinglePage(url, start_index);
 			stats = (JsonObject)json.get("searchInformation");

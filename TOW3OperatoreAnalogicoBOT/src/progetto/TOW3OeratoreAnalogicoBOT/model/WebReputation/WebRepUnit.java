@@ -4,8 +4,12 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.kennycason.kumo.WordFrequency;
 
 import progetto.TOW3OeratoreAnalogicoBOT.db.DBConnect;
 import progetto.TOW3OeratoreAnalogicoBOT.db.OperatoreDAO;
@@ -72,6 +76,7 @@ public class WebRepUnit {
 
 			String article_text = this.extractRealText(html_text, res.getBacklink());			
 			res.setText(article_text);
+			this.setKeywords(res);
 			
 			azienda.addArticle(res);
 //			System.out.println(article_text);
@@ -98,44 +103,26 @@ public class WebRepUnit {
 		StringCleaner cleaner = new StringCleaner(html_text);
 		
 		String body_context = cleaner.extractText(testata);
-/*
-		String[] flaglist = StringUtils.substringsBetween(html_text, "<p class=", "</p>");
-		
-		if (flaglist != null && flaglist.length != 0){
-			for (String text : flaglist) {
-				if (text.length() < 150) continue;
-				if (text.contains("<a href=")) {
-					for (String href : StringUtils.substringsBetween(text, "<a", "/a>")) {
-						text.replace(href, "LINK_REMOVED");
-//						System.out.println("STO RIMUOVENDO LINK -> " + href);
-//						System.out.println(text);
-					}
-				}
-				if (text.length() < 150) continue;
-				body_context += "\n" + text;
-			}
-		}
-		
-		flaglist = StringUtils.substringsBetween(html_text, "<p>", "</p>");
-		
-		if (flaglist != null && flaglist.length !=0){
-			for (String text : flaglist) {
-				if (text.length() < 150) continue;
-				if (text.contains("<a href=")) {
-					for (String href : StringUtils.substringsBetween(text, "<a", "/a>")) {
-						text.replace(href, "LINK_REMOVED");
-//						System.out.println("STO RIMUOVENDO LINK -> " + href);
-//						System.out.println(text);
-					}
-				}
-				if (text.length() < 150) continue;
-				body_context += "\n" + text;
-			}
-		}
-		*/
-		
 		return body_context;
 	
+	}
+	
+	
+	private void setKeywords (Risultato res) {
+		
+		WordCloudGenerator gen = new WordCloudGenerator (res.getText());
+		List<WordFrequency> frequencies = gen.getFrequencies();
+		
+		Collections.sort(frequencies);
+		
+		ArrayList<String> keys = new ArrayList<String> ();
+		
+		for (WordFrequency freq : frequencies) {
+			keys.add(freq.getWord());
+		}
+		
+		res.setKeywords(keys);
+		
 	}
 	
 	private int calculateReputation (Ricerca ric) {

@@ -96,7 +96,7 @@ public class OperatoreDAO {
 			st.setString(3, res.getLink()); // stringa, max 500 caratteri
 			st.setString(4, res.getBacklink()); // stringa, max 100 caratteri
 			st.setString(5, res.getText()); // stringa, il massimo
-			st.setString(6, res.getKeywords()); // stringa, max 200 caratteri (non è implementato, ma si potrebbe fare)
+			st.setString(6, res.getKeywordsAsString()); // stringa, max 200 caratteri (non è implementato, ma si potrebbe fare)
 			st.setString(7, res.getDate()); // stringa, max 12 caratteri (non implementato)
 			
 			st.executeUpdate();

@@ -43,6 +43,8 @@ public class Model {
 //		ArrayList<Brevetto> patents = patentUnit.searchForGooglePatents(azienda);
 		ArrayList<Brevetto> patents = patentUnit.searchForEPOPatents(azienda);
 		
+		if (patents == null || patents.size()==0) return;
+		
 //		for (Brevetto b : patents) {
 //			opDAO.insertBrevettoFromGpatent(b);
 //		}

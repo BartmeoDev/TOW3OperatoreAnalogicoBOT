@@ -11,8 +11,8 @@ affinche
 agl
 agli
 ahime
-ahimã¨
-ahimè
+ahim�
+ahim�
 ai
 al
 alcuna
@@ -68,7 +68,7 @@ avremo
 avreste
 avresti
 avrete
-avrà
+avr�
 avrò
 avuta
 avute
@@ -82,7 +82,7 @@ berlusconi
 brava
 bravo
 buono
-c
+c�
 casa
 caso
 cento
@@ -99,15 +99,15 @@ ciascuna
 ciascuno
 cima
 cinque
-cio
+ci�
 cioe
-cioã¨
+cio�
 cioè
 circa
 citta
-città
+citt�
 cittã
-ciã²
+ci
 ciò
 co
 codesta
@@ -136,6 +136,7 @@ cortesia
 cos
 cosa
 cosi
+cos�
 cosã¬
 così
 cui
@@ -419,13 +420,14 @@ perche
 perchã¨
 perchè
 perché
-percio
+perci�
 perciã²
 perciò
 perfino
 pero
 persino
 persone
+per�
 perã²
 però
 piedi
@@ -433,6 +435,7 @@ pieno
 piglia
 piu
 piuttosto
+pi�
 piã¹
 più
 po
@@ -461,7 +464,7 @@ proprio
 puo
 pure
 purtroppo
-puã²
+pu�
 può
 qua
 qualche
@@ -512,7 +515,7 @@ saremo
 sareste
 saresti
 sarete
-sarà
+sar�
 sarã
 sarò
 scola
@@ -563,7 +566,7 @@ staremo
 stareste
 staresti
 starete
-starà
+star�
 starò
 stata
 state

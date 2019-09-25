@@ -12,7 +12,7 @@ import progetto.TOW3OeratoreAnalogicoBOT.model.Azienda;
 public class PatentUnit {
 	
 	ArrayList<String> link_brevetti = new ArrayList<String>();
-	final private String authentication = "Bearer 2HINd9mqFQPuxLv4EVaOt4PbhyE6";
+	final private String authentication = "Bearer pfx8r9P81fP14smGs2jctyxA9oHC";
 	
 	final String CSV_folder = "C:\\Users\\Fabio\\Documents\\GitHub\\OperatoreAnalogicoBOT\\CSV_Downloads\\";
 	final File folder = new File(CSV_folder);
@@ -62,6 +62,8 @@ public class PatentUnit {
 		EPOWebService epoService = new EPOWebService (this.authentication);
 		
 		patents = epoService.getPatents(azienda.getNomeAzienda(), azienda.getRagioneSociale());
+		
+		if (patents == null || patents.size()==0) return null;
 		
 		Brevetto[] patent_array = patents.toArray(new Brevetto[patents.size()]);
 		
