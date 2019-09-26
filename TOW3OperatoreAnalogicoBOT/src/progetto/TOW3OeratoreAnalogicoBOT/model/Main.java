@@ -20,17 +20,17 @@ public class Main {
 		
 		Model model = new Model(true); // IF FALSE, DOES NOT CONNECT TO DB
 		
-		String nomeAzienda = "fondazione torino wireless";
-		String partitaIVA = "77777777777";
+		String nomeAzienda = "qualivision";
+		String partitaIVA = "55555555555";
 		String ragioneSociale = "";
 		
 		Azienda az_test = new Azienda (nomeAzienda, partitaIVA, ragioneSociale);
 		
 		
-	//	model.patents_test(az_test); // DECOMMENTARE PER BREVETTI
+		model.patents_test(az_test); // DECOMMENTARE PER BREVETTI
 		
 		
-		model.webReputation_test(az_test); // DECOMMENTARE PER REPUTATION
+//		model.webReputation_test(az_test); // DECOMMENTARE PER REPUTATION
 		
 		
 		System.out.println("Ho finito!");

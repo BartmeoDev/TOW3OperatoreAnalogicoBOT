@@ -2,6 +2,8 @@ package progetto.TOW3OeratoreAnalogicoBOT.model.Patent;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,7 +14,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import com.kennycason.kumo.WordFrequency;
+
 import progetto.TOW3OeratoreAnalogicoBOT.model.VirtualWebClient;
+import progetto.TOW3OeratoreAnalogicoBOT.model.WebReputation.WordCloudGenerator;
 
 public class EPOWebService {
 	
@@ -67,7 +72,10 @@ public class EPOWebService {
 		
 		patent.setTitolo(this.getTitle(XMLdoc));	// SET PATENT TITLE
 		
-		patent.setAbstract_text(this.getAbstract(XMLdoc));	// SET PATENT ABSTRACT
+		String abstract_text = this.getAbstract(XMLdoc);
+		patent.setAbstract_text(abstract_text);	// SET PATENT ABSTRACT
+		
+		patent.setKeywords(this.findKeywords(abstract_text));
 		
 		return patent;
 		
@@ -257,6 +265,21 @@ public class EPOWebService {
 		http_request += fullDocNumber + "/biblio";
 		
 		return http_request;
+	}
+	
+	
+	private ArrayList<String> findKeywords (String text){
+		
+		ArrayList<String> keywords = new ArrayList<String>();
+		WordCloudGenerator gen = new WordCloudGenerator (text);
+		List<WordFrequency> frequencies = gen.getFrequencies();
+		Collections.sort(frequencies);
+		
+		for (WordFrequency freq : frequencies) {
+			keywords.add(freq.getWord());
+		}
+		
+		return keywords;
 	}
 	
 

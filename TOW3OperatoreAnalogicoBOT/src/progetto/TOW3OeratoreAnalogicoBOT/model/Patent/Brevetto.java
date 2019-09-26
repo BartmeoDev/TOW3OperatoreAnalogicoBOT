@@ -1,5 +1,7 @@
 package progetto.TOW3OeratoreAnalogicoBOT.model.Patent;
 
+import java.util.ArrayList;
+
 public class Brevetto {
 
 	private String p_iva;
@@ -10,7 +12,7 @@ public class Brevetto {
 	private String[] codclass;
 	private String luogo;
 	private String abstract_text;
-	private String keywords;
+	private String[] keywords;
 	
 	private String country;
 	private String doc_number;
@@ -40,8 +42,7 @@ public class Brevetto {
 		this.assegnatario = "";
 		this.data = "";
 		this.abstract_text = "";
-		this.keywords = "";
-		
+		this.keywords = new String[10];
 	}
 	
 	public String getFullDocNumber () {		
@@ -86,16 +87,26 @@ public class Brevetto {
 		this.codclass[0] = firstcodclass;
 		this.luogo = luogo;
 		this.abstract_text = abstract_text;
-		this.keywords = keywords;
+		this.keywords = this.setPrivateKeywords(keywords);
 	}
 
 	
-	public String getKeywords() {
+	public String[] getKeywords() {
 		return keywords;
 	}
 
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
+//	public void setKeywords(String keywords) {
+//		this.keywords = this.setPrivateKeywords(keywords);
+//	}
+	
+	public void setKeywords (ArrayList<String> list) {
+		
+		int size = list.size();
+		if (size > 10) size = 10;
+		
+		for (int i=0; i<size; i++)
+			if (list.get(i) != null)
+				this.keywords[i] = list.get(i);
 	}
 
 	public String getData() {
@@ -165,6 +176,20 @@ public class Brevetto {
 	}
 	
 	
+	public String getKeywordsAsString () {
+		
+		String keys = "";
+		for (String s : this.keywords)
+			if (s != null)
+				keys += s + ", ";
+		return keys;
+	}
 	
+	
+
+	private String[] setPrivateKeywords (String s) {
+		String[] keys = s.trim().split(",");
+		return keys;
+	}
 
 }

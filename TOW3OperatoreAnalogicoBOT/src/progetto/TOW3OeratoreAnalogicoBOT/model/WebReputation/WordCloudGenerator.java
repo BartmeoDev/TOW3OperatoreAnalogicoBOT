@@ -23,7 +23,8 @@ import com.kennycason.kumo.palette.ColorPalette;
 public class WordCloudGenerator {
 	
 	private String text;
-	private ArrayList<String> stopwords = new ArrayList<String>();
+	private ArrayList<String> stopwords_it = new ArrayList<String>();
+	private ArrayList<String> stopwords_eng = new ArrayList<String>();
 	
 	public WordCloudGenerator (String t) {
 		this.text = t;
@@ -38,7 +39,7 @@ public class WordCloudGenerator {
 		String cleantext = text.replace(".", " ").replace(",", " ").replace(";", " ").replace("(", " ").replace(")", " ").replace("\"", " ").replace("-", " ").replace(":", " ").replace("?", " ").replace("!", " ").replace("'", " ");
 		
 		for (String word : cleantext.split(" ")) {
-			if (word.length()>1 && !stopwords.contains(word)) {
+			if (word.length()>1 && !stopwords_it.contains(word) &&!stopwords_eng.contains(word)) {
 				good_words.add(word);
 			}
 		}
@@ -65,7 +66,7 @@ public class WordCloudGenerator {
 		wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1), new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
 		wordCloud.setFontScalar(new LinearFontScalar(8, 40));
 		wordCloud.build(wordFrequencies);
-		wordCloud.writeToFile("C:\\Users\\fabio\\Desktop\\datarank_wordcloud_circle_sqrt_font.png");
+//		wordCloud.writeToFile("C:\\Users\\fabio\\Desktop\\datarank_wordcloud_circle_sqrt_font.png");
 		return wordCloud.getBufferedImage();
 	}
 	
@@ -73,16 +74,26 @@ public class WordCloudGenerator {
 
 	private void populateStopwords () {
 		
-		File file = new File ("stopwords-it.txt");
+		File file_it = new File ("stopwords-it.txt");
+		File file_eng = new File ("stopwords-eng.txt");
 		
 		try {
-			FileReader reader = new FileReader (file);
+			FileReader reader = new FileReader (file_it);
 			
 			BufferedReader buffer = new BufferedReader (reader);
 			String s;
 
 			while ((s = buffer.readLine()) != null) {
-				stopwords.add(s);
+				stopwords_it.add(s);
+			}
+			
+			reader = new FileReader (file_eng);
+			
+			buffer = new BufferedReader (reader);
+			s = "";
+
+			while ((s = buffer.readLine()) != null) {
+				stopwords_eng.add(s);
 			}
 			
 		} catch (FileNotFoundException e) {

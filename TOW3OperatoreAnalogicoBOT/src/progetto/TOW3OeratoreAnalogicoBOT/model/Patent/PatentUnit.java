@@ -12,7 +12,7 @@ import progetto.TOW3OeratoreAnalogicoBOT.model.Azienda;
 public class PatentUnit {
 	
 	ArrayList<String> link_brevetti = new ArrayList<String>();
-	final private String authentication = "Bearer pfx8r9P81fP14smGs2jctyxA9oHC";
+	final private String authentication = "Bearer F6jHo7AnukzwG1db4Qrvmd7F6b3E";
 	
 	final String CSV_folder = "C:\\Users\\Fabio\\Documents\\GitHub\\OperatoreAnalogicoBOT\\CSV_Downloads\\";
 	final File folder = new File(CSV_folder);

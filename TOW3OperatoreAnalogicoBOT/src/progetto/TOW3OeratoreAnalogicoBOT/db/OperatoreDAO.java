@@ -14,7 +14,7 @@ public class OperatoreDAO {
 	
 	final String sqlBrevettoGoogle = "INSERT INTO `brevetti` (`p_iva`, `app_number`,`titolo`, `assegnatario`, `inventore`, `data_rilascio`, `luogo_validita` , `abstract`, `cod_classificazione`, `keywords`) VALUES (?,?,?,?,?,?,?,?,?,?);";
 	final String sqlArticolo = "INSERT INTO `articoli` (`p_iva`, `Title`, `Link`, `Backlink`, `Text`, `Keywords` , `Date`) VALUES (?,?,?,?,?,?,?);";
-	final String sqlBrevettoEPO = "INSERT INTO `brevetti` (`P_iva`, `App_number`, `Family_id`, `Titolo`, `Assegnatario`, `Inventori`, `Data`, `Abstract_text`, `Codclass`) VALUES (?,?,?,?,?,?,?,?,?);";
+	final String sqlBrevettoEPO = "INSERT INTO `brevetti` (`P_iva`, `App_number`, `Family_id`, `Titolo`, `Assegnatario`, `Inventori`, `Data`, `Abstract_text`, `Codclass`, `Keywords`) VALUES (?,?,?,?,?,?,?,?,?,?);";
 	//	String sqlTitle = "INSERT INTO 'brevetti' ('titolo') VALUES(?);";
 //	final String sqlDelete = "TRUNCATE `brevetti`";
 	
@@ -47,7 +47,7 @@ public class OperatoreDAO {
 			st.setString(7, b.getLuogo());
 			st.setString(8, b.getAbstract_text());
 			st.setString(9, b.getCodclassAsString());
-			st.setString(10, b.getKeywords());
+			st.setString(10, b.getKeywordsAsString());
 			
 			st.executeUpdate();
 			
@@ -74,7 +74,7 @@ public class OperatoreDAO {
 			st.setString(7, b.getData());	// stringa, 10 caratteri (formato aaaa/mm/gg)
 			st.setString(8, b.getAbstract_text());	// stringa, il massimo (su heidisql "long text" o "text" credo)
 			st.setString(9, b.getCodclassAsString());	// stringa, max 200 caratteri (è una lista di codici, non solo più uno come prima)
-			
+			st.setString(10, b.getKeywordsAsString());
 			st.executeUpdate();
 			
 		} catch (SQLException e) {
